@@ -1,6 +1,4 @@
-provider "docker" {
-  #  host = "unix:///var/run/docker.sock"
-}
+provider "docker" {}
 
 resource "docker_image" "postgres" {
   name         = "postgres:14"

@@ -12,6 +12,8 @@ resource "random_string" "user_password" {
   special = false
 }
 
+provider "exoscale" {}
+
 resource "exoscale_database" "this" {
   zone = "ch-dk-2"
   name = "meetup-db"
@@ -86,9 +88,13 @@ resource "postgresql_database" "this" {
   ]
 }
 
-resource "postgresql_extension" "my_extension" {
+resource "postgresql_extension" "this" {
   name     = "pg_stat_statements"
   database = local.pg_infos.database
+
+  depends_on = [
+    null_resource.wait_for_db
+  ]
 }
 
 output "connection_uri" {
