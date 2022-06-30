@@ -37,9 +37,9 @@ resource "docker_container" "exporter" {
   }
 }
 
-resource "docker_container" "replica" {
+resource "docker_container" "exporter-replica" {
   image = docker_image.exporter.latest
-  name  = "replica"
+  name  = "exporter-replica"
   dns   = ["8.8.8.8"]
   env = [
     "DATA_SOURCE_NAME=${local.replica_uri}",

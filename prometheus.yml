@@ -20,6 +20,6 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - replica:9187
+    - exporter-replica:9187
     labels:
       server: "replica"
